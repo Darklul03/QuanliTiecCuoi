@@ -1,0 +1,5 @@
+django
+pandas
+django-widget-tweaks
+pillow
+django-money

@@ -1,0 +1,95 @@
+{% extends 'tieccuoi/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<head>
+  <style media="screen">
+    input[type=text], select,input[type=number] , textarea{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+
+  form[type=text]{
+    padding: 14px;
+  }
+  </style>
+
+
+</head>
+
+<div class="wrapper">
+    <h1 style="text-align:center;">Thêm món ăn</h1>
+    <div>
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div {% if message.tags %} class="{{ message.tags }}" {% endif %}> <strong> {{message}}</strong> </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="row">
+        <div class="col-12 col-m-12 col-sm-12">
+        
+                    
+            <div class="card">
+                <div class="card-header">
+                                      
+                    <h2 style="color:red; text-align:center" >Danh sách món ăn</h2>
+                    
+
+                </div>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tên món ăn</th>
+                                <th>Đơn giá</th>
+                                <th>Ghi chú</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+            {% for row in table %}
+            <tr>
+              <td>{{row.TenMonAn}}</td>
+              <td>{{row.DonGia}}</td>
+              <td>{{row.GhiChu|default_if_none:"&nbsp;"}}</td>
+            </tr>
+            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+
+{% endblock content %}
+
+

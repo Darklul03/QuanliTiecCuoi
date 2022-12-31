@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+	
+<head>
+	<style>a { text-decoration: none; } 
+	.button-53 {
+  background-color: #ee6a1d;
+  border: 0 solid #E5E7EB;
+  box-sizing: border-box;
+  color: #000000;
+  display: flex;
+  font-family: ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 1rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1.75rem;
+  padding: .75rem 1.65rem;
+  position: relative;
+  text-align: center;
+  text-decoration: none #000000 solid;
+  text-decoration-thickness: auto;
+  width: 100%;
+  max-width: 460px;
+  position: relative;
+  cursor: pointer;
+  transform: rotate(-2deg);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-53:focus {
+  outline: 0;
+}
+
+.button-53:after {
+  content: '';
+  position: absolute;
+  border: 1px solid #000000;
+  bottom: 4px;
+  left: 4px;
+  width: calc(100% - 1px);
+  height: calc(100% - 1px);
+}
+
+.button-53:hover:after {
+  bottom: 2px;
+  left: 2px;
+}
+
+@media (min-width: 768px) {
+  .button-53 {
+    padding: .75rem 3rem;
+    font-size: 1.25rem;
+  }
+}
+    </style>
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<link rel="icon" type="image/png" href="{% static 'assets/AT-pro-logo.png' %}"/>
+
+	<!-- Import lib -->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'fontawesomefree/css/all.min.css' %}">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+	<!-- End import lib -->
+
+	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body class="overlay-scrollbar">
+	<!-- navbar -->
+	<div class="navbar">
+		<!-- nav left -->
+		<ul class="navbar-nav">
+			<li class="nav-item">
+				<a class="nav-link" style="cursor:default">
+					<i class="fas fa-bars" onclick="collapseSidebar()" style="cursor:pointer"></i>
+				</a>
+			</li>
+			<li class="nav-item">
+			<a style="color:green";href="/customer-dashboard"><h3>Phần mềm quản lý Garage Ôtô</h3></a>
+			</li>
+		</ul>
+
+		<ul class="navbar-nav nav-right">
+			<li class="nav-item avt-wrapper">
+				<div class="avt dropdown">
+					<img src="{{ picture }} " alt="User image" class="dropdown-toggle" data-toggle="user-menu">
+					<ul id="user-menu" class="dropdown-menu">
+						<li  class="dropdown-menu-item">
+							<a href="/profile/{{username}}" class="dropdown-menu-link">
+								<div>
+									<i class="fas fa-user-tie"></i>
+								</div>
+								<span>Trang cá nhân</span>
+							</a>
+						</li>
+
+						<li  class="dropdown-menu-item">
+							<a href="/logout" class="dropdown-menu-link">
+								<div>
+									<i class="fas fa-sign-out-alt"></i>
+								</div>
+								<span>Đăng xuất</span>
+						<li  class="dropdown-menu-item">
+							<a href="/login" class="dropdown-menu-link">
+								<div>
+									<i class="fas fa-sign-out-alt"></i>
+								</div>
+								<span>Đăng nhập</span>
+
+							</a>
+						</li>
+					</ul>
+				</div>
+			</li>
+		</ul>
+		<!-- end nav right -->
+	</div>
+	<!-- end navbar -->
+
+
+
+
+
+	<!-- sidebar -->
+	<div class="sidebar">
+		<ul class="sidebar-nav">
+
+			<li class="sidebar-nav-item">
+				<a href="/tiepnhansanh" class="sidebar-nav-link">
+					<div>
+						<i class="fas fa-tachometer-alt"></i>
+					</div>
+					<span>
+						Tiếp nhận sảnh
+					</span>
+				</a>
+			</li>
+
+			<li  class="sidebar-nav-item">
+				<a href="/themloaisanh" class="sidebar-nav-link">
+					<div>
+						<i class="fas fa-search"></i>
+					</div>
+					<span>Thêm loại sảnh</span>
+				</a>
+			</li>
+
+			<li  class="sidebar-nav-item">
+				<a href="/{{customer.username}}/nhap_biensothutien" class="sidebar-nav-link">
+					<div>
+					<i class="fas fa-dollar-sign"></i>
+					</div>
+					<span>Lập phiếu thu tiền</span>
+				</a>
+			</li>
+			<li  class="sidebar-nav-item">
+				<a href="/{{customer.username}}/request" class="sidebar-nav-link">
+					<div>
+						<i class="fas fa-bus"></i>
+					</div>
+					<span>Tiếp nhận xe</span>
+				</a>
+			</li>
+			<li  class="sidebar-nav-item">
+				<a href="/{{customer.username}}/nhap_biensosua" class="sidebar-nav-link">
+					<div>
+						<i class="fas fa-bus"></i>
+					</div>
+					<span>Lập phiếu sửa chữa</span>
+				</a>
+			</li>
+
+			<li  class="sidebar-nav-item">
+				<a href="/create_new_staff" class="sidebar-nav-link">
+					<div>
+						<i class="fas fa-car"></i>
+					</div>
+					<span>Tạo tài khoản nhân viên</span>
+				</a>
+			</li>
+
+
+			<li  class="sidebar-nav-item">
+				<a href="/{{customer.username}}/thamso" class="sidebar-nav-link">
+					<div>
+						<i class="fas fa-spinner"></i>
+					</div>
+					<span>Cập nhật tham số</span>
+				</a>
+			</li>
+
+			<li  class="sidebar-nav-item">
+				<a href="/{{customer.username}}/nhap_vtpt" class="sidebar-nav-link">
+					<div>
+						<i class="fas fa-check-circle"></i>
+					</div>
+					<span>Nhập vật tư phụ tùng</span>
+				</a>
+			</li>
+
+			<li  class="sidebar-nav-item">
+				<a href="/{{customer.username}}/nhap_hieuxe" class="sidebar-nav-link">
+					<div>
+						<i class="fas fa-check-circle"></i>
+					</div>
+					<span>Nhập hiệu xe</span>
+				</a>
+			</li>
+			
+			
+			<li  class="sidebar-nav-item">
+				<a href="/{{customer.username}}/nhap_tiencong" class="sidebar-nav-link">
+					<div>
+						<i class="fas fa-check-circle"></i>
+					</div>
+					<span>Nhập tiền công </span>
+				</a>
+			</li>
+
+			<li  class="sidebar-nav-item">
+				<a href="/{{customer.username}}/baocaodoanhso" class="sidebar-nav-link">
+					<div>
+						<i class="fas fa-tasks"></i>
+					</div>
+					<span>Báo cáo doanh số</span>
+				</a>
+			</li>
+
+			<li  class="sidebar-nav-item">
+				<a href="/{{customer.username}}/baocaoton" class="sidebar-nav-link">
+					<div>
+						<i class="fas fa-tasks"></i>
+					</div>
+                    <span>Báo cáo tồn</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<!-- end sidebar -->
+
+
+
+
+<div>
+
+	<!--content start-->
+	<div class="content">
+
+		{% block content %}
+
+		{% endblock content %}
+	</div>
+	<!--content end-->
+</div>
+
+
+
+
+
+	<!-- import script -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+	<script src="{% static 'index.js' %}"></script>
+	<script>
+		var message_ele = document.getElementById("message_container");
+	setTimeout(function(){ 
+	   message_ele.style.display = "none"; 
+	}, 1000);
+	</script>
+	<!-- end import script -->
+</body>
+</html>
